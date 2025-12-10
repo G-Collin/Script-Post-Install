@@ -28,12 +28,25 @@ echo ---------------------
 echo ------! INSTALLATION COUCHE NETBIOS !------
 echo ---------------------
 apt install winbind samba -y
-if ! grep -q "^hosts:.*wins" /etc/nsswitch.conf; then
-sed -i 's/^\(hosts:.*\)dns/\1dns wins/' /etc/nsswitch.conf || \
-echo "hosts: files dns wins" >> /etc/nsswitch.conf
-else
-echo "→ Ligne WINS déjà présente"
-fi
+echo "
+# Example configuration of GNU Name Service Switch functionality.
+# If you have the `glibc-doc-reference' and `info' packages installed, try:
+# `info libc "Name Service Switch"' for information about this file.
+
+passwd:         files systemd winbind
+group:          files systemd winbind
+shadow:         files systemd
+gshadow:        files systemd
+
+hosts:          files dns wins
+networks:       files
+
+protocols:      db files
+services:       db files
+ethers:         db files
+rpc:            db files
+
+netgroup:       nis" >> /etc/nsswitch.conf
 echo "export LS_OPTIONS='--color=auto'" >> /root/.bashrc
 echo "eval \"\$(dircolors)\"" >> /root/.bashrc
 echo "alias ls='ls \$LS_OPTIONS'" >> /root/.bashrc
