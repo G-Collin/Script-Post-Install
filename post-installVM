@@ -29,10 +29,10 @@ echo ------! INSTALLATION COUCHE NETBIOS !------
 echo ---------------------
 apt install winbind samba -y
 if ! grep -q "^hosts:.*wins" /etc/nsswitch.conf; then
-    sed -i 's/^\(hosts:.*\)dns/\1dns wins/' /etc/nsswitch.conf || \
-        echo "hosts: files dns wins" >> /etc/nsswitch.conf
+sed -i 's/^\(hosts:.*\)dns/\1dns wins/' /etc/nsswitch.conf || \
+echo "hosts: files dns wins" >> /etc/nsswitch.conf
 else
-    echo "→ Ligne WINS déjà présente"
+echo "→ Ligne WINS déjà présente"
 fi
 echo "export LS_OPTIONS='--color=auto'" >> /root/.bashrc
 echo "eval \"\$(dircolors)\"" >> /root/.bashrc
