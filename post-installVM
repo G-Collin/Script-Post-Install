@@ -5,8 +5,11 @@ export DEBIAN_FRONTEND=noninteractive
 set -e
 echo ------! MISE À JOUR COMPLETE SU SYSTEME !------
 apt update && apt upgrade -y
+clear
 
+echo ---------------------
 echo ------! INSTALLATION DES PAQUETS !------
+echo ---------------------
 apt install ssh -y
 apt install zip -y
 apt install nmap -y
@@ -19,9 +22,11 @@ apt install dnsutils -y
 apt install net-tools -y
 apt install sudo -y
 apt install lynx -y
+clear
 
+echo ---------------------
 echo ------! INSTALLATION COUCHE NETBIOS !------
-
+echo ---------------------
 apt install winbind samba -y
 if ! grep -q "^hosts:.*wins" /etc/nsswitch.conf; then
     sed -i 's/^\(hosts:.*\)dns/\1dns wins/' /etc/nsswitch.conf || \
@@ -34,20 +39,28 @@ echo "eval \"\$(dircolors)\"" >> /root/.bashrc
 echo "alias ls='ls \$LS_OPTIONS'" >> /root/.bashrc
 echo "alias ll='ls \$LS_OPTIONS -l'" >> /root/.bashrc
 echo "alias l='ls \$LS_OPTIONS -lA'" >> /root/.bashrc
+clear
 
+echo ---------------------
 echo ------! INSTALLATION WEBMIN !------
-
+echo ---------------------
 export DEBIAN_FRONTEND=noninteractive
 curl -o webmin-setup-repo.sh https://raw.githubusercontent.com/webmin/webmin/master/webmin-setup-repo.sh
 sh webmin-setup-repo.sh
 apt install webmin --install-recommends -y
+clear
 
+echo ---------------------
 echo ------! POUR LE FUN !-------
-
+echo ---------------------
 apt install bsdgames -y
 
-echo ------! FINI !-------
 echo ---------------------
 echo ---------------------
 echo ---------------------
+echo ------! FINI (La machine va reboot) !-------
+echo ---------------------
+echo ---------------------
+echo ---------------------
+sleep 10
 reboot
