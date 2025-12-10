@@ -10,7 +10,7 @@ apt install zip -y
 apt install nmap -y
 apt install locate -y
 apt install ncdu -y
-apt installcurl -y
+apt install curl -y
 apt install git -y
 apt install -y
 apt install screen -y
