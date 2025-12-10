@@ -1,0 +1,43 @@
+#!/bin/bash
+
+set -e
+echo ------! MISE À JOUR COMPLETE SU SYSTEME !------
+apt update && apt upgrade -y
+
+echo ------! INSTALLATION DES PAQUETS !------
+apt install ssh -y
+apt install zip -y
+apt install nmap -y
+apt install locate -y
+apt install ncdu -y
+apt installcurl -y
+apt install git -y
+apt install -y
+apt install screen -y
+apt install dnsutils -y
+apt install net-tools -y
+apt install sudo -y
+apt install lynx -y
+
+echo ------! INSTALLATION COUCHE NETBIOS !------
+
+apt install winbind samba -y
+echo "hosts:          files dns wins" >>>>>>>>>>>> /etc/nsswitch.conf
+echo "export LS_OPTIONS='--color=auto'" >>>>>>>>>> /root/.bashrc 
+echo "eval "$(dircolors)"" >>>>>>>>>>> /root/.bashrc 
+echo "alias ls='ls $LS_OPTIONS'" >>>>>>>>>>>> /root/.bashrc 
+echo "alias ll='ls $LS_OPTIONS -l'" >>>>>>>>>>>>> /root/.bashrc 
+echo "alias l='ls $LS_OPTIONS -lA'" >>>>>>>>>>>>>> /root/.bashrc 
+
+echo ------! INSTALLATION WEBMIN !------
+
+curl -o webmin-setup-repo.sh https://raw.githubusercontent.com/webmin/webmin/master/webmin-setup-repo.sh
+sh webmin-setup-repo.sh
+apt install webmin --install-recommends
+
+echo ------! POUR LE FUN !-------
+
+apt install bsdgames
+
+echo ------! FINI !-------
+reboot
