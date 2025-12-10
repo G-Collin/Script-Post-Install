@@ -12,7 +12,6 @@ apt install locate -y
 apt install ncdu -y
 apt install curl -y
 apt install git -y
-apt install -y
 apt install screen -y
 apt install dnsutils -y
 apt install net-tools -y
@@ -40,4 +39,7 @@ echo ------! POUR LE FUN !-------
 apt install bsdgames
 
 echo ------! FINI !-------
+echo ---------------------
+echo ---------------------
+echo ---------------------
 reboot
