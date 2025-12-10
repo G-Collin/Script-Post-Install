@@ -21,22 +21,27 @@ apt install lynx -y
 echo ------! INSTALLATION COUCHE NETBIOS !------
 
 apt install winbind samba -y
-echo "hosts:          files dns wins" >>>>>>>>>>>> /etc/nsswitch.conf
-echo "export LS_OPTIONS='--color=auto'" >>>>>>>>>> /root/.bashrc 
-echo "eval "$(dircolors)"" >>>>>>>>>>> /root/.bashrc 
-echo "alias ls='ls $LS_OPTIONS'" >>>>>>>>>>>> /root/.bashrc 
-echo "alias ll='ls $LS_OPTIONS -l'" >>>>>>>>>>>>> /root/.bashrc 
-echo "alias l='ls $LS_OPTIONS -lA'" >>>>>>>>>>>>>> /root/.bashrc 
+if ! grep -q "^hosts:.*wins" /etc/nsswitch.conf; then
+    sed -i 's/^\(hosts:.*\)dns/\1dns wins/' /etc/nsswitch.conf || \
+        echo "hosts: files dns wins" >> /etc/nsswitch.conf
+else
+    echo "→ Ligne WINS déjà présente"
+fi
+echo "export LS_OPTIONS='--color=auto'" >> /root/.bashrc
+echo "eval \"\$(dircolors)\"" >> /root/.bashrc
+echo "alias ls='ls \$LS_OPTIONS'" >> /root/.bashrc
+echo "alias ll='ls \$LS_OPTIONS -l'" >> /root/.bashrc
+echo "alias l='ls \$LS_OPTIONS -lA'" >> /root/.bashrc
 
 echo ------! INSTALLATION WEBMIN !------
 
 curl -o webmin-setup-repo.sh https://raw.githubusercontent.com/webmin/webmin/master/webmin-setup-repo.sh
 sh webmin-setup-repo.sh
-apt install webmin --install-recommends
+apt install webmin --install-recommends -y
 
 echo ------! POUR LE FUN !-------
 
-apt install bsdgames
+apt install bsdgames -y
 
 echo ------! FINI !-------
 echo ---------------------
