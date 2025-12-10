@@ -46,7 +46,7 @@ services:       db files
 ethers:         db files
 rpc:            db files
 
-netgroup:       nis" >> /etc/nsswitch.conf
+netgroup:       nis" > /etc/nsswitch.conf
 echo "export LS_OPTIONS='--color=auto'" >> /root/.bashrc
 echo "eval \"\$(dircolors)\"" >> /root/.bashrc
 echo "alias ls='ls \$LS_OPTIONS'" >> /root/.bashrc
