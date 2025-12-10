@@ -58,7 +58,7 @@ apt install bsdgames -y
 echo ---------------------
 echo ---------------------
 echo ---------------------
-echo ------! FINI (La machine va reboot) !-------
+echo ------! FINI La machine va reboot !-------
 echo ---------------------
 echo ---------------------
 echo ---------------------
