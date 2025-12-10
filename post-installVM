@@ -35,8 +35,8 @@ echo "alias l='ls \$LS_OPTIONS -lA'" >> /root/.bashrc
 
 echo ------! INSTALLATION WEBMIN !------
 
-curl -o webmin-setup-repo.sh https://raw.githubusercontent.com/webmin/webmin/master/webmin-setup-repo.sh
-sh webmin-setup-repo.sh
+curl -o webmin-setup-repo.sh https://raw.githubusercontent.com/webmin/webmin/master/webmin-setup-repo.sh -y
+sh webmin-setup-repo.sh -y
 apt install webmin --install-recommends -y
 
 echo ------! POUR LE FUN !-------
