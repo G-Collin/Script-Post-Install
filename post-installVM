@@ -1,5 +1,7 @@
 #!/bin/bash
 
+clear
+export DEBIAN_FRONTEND=noninteractive
 set -e
 echo ------! MISE À JOUR COMPLETE SU SYSTEME !------
 apt update && apt upgrade -y
