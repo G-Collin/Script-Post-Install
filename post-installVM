@@ -22,6 +22,7 @@ apt install dnsutils -y
 apt install net-tools -y
 apt install sudo -y
 apt install lynx -y
+apt install tree -y
 clear
 
 echo ---------------------
