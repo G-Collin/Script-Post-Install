@@ -1,34 +1,28 @@
 #!/bin/bash
+set -e
+trap 'echo "ERREUR. Quelque chose s'est mal passé à la ligne $LINENO... Le script s'est interrompu."; exit 1' ERR
 
 clear
-echo ---------------------
-echo ------! MISE À JOUR COMPLETE SU SYSTEME !------
-echo ---------------------
+echo "=============================================
+------ MISE À JOUR COMPLETE SU SYSTEME ------
+============================================="
+sleep 5
 apt update && apt upgrade -y
 clear
 
-echo ---------------------
-echo ------! INSTALLATION DES PAQUETS !------
-echo ---------------------
-apt install ssh -y
-apt install zip -y
-apt install nmap -y
-apt install locate -y
-apt install ncdu -y
-apt install curl -y
-apt install git -y
-apt install screen -y
-apt install dnsutils -y
-apt install net-tools -y
-apt install sudo -y
-apt install lynx -y
-apt install tree -y
+echo "======================================
+------ INSTALLATION DES PAQUETS ------
+======================================"
+sleep 5
+apt install ssh zip nmap locate ncdu curl git screen dnsutils net-tools sudo lynx tree -y
 clear
 
-echo ---------------------
-echo ------! INSTALLATION COUCHE NETBIOS !------
-echo ---------------------
+echo "=========================================
+------ INSTALLATION COUCHE NETBIOS ------
+========================================="
+sleep 5
 apt install winbind samba -y
+cp /etc/nsswitch.conf /etc/nsswitch_backup.conf
 echo "
 # Example configuration of GNU Name Service Switch functionality.
 # If you have the `glibc-doc-reference' and `info' packages installed, try:
@@ -48,32 +42,36 @@ ethers:         db files
 rpc:            db files
 
 netgroup:       nis" > /etc/nsswitch.conf
-echo "export LS_OPTIONS='--color=auto'" >> /root/.bashrc
-echo "eval \"\$(dircolors)\"" >> /root/.bashrc
-echo "alias ls='ls \$LS_OPTIONS'" >> /root/.bashrc
-echo "alias ll='ls \$LS_OPTIONS -l'" >> /root/.bashrc
-echo "alias l='ls \$LS_OPTIONS -lA'" >> /root/.bashrc
+
+echo "export LS_OPTIONS='--color=auto'
+eval \"\$(dircolors)\"
+alias ls='ls \$LS_OPTIONS'
+alias ll='ls \$LS_OPTIONS -l'
+alias l='ls \$LS_OPTIONS -lA'" >> /root/.bashrc
 clear
 
-echo ---------------------
-echo ------! INSTALLATION WEBMIN !------
-echo ---------------------
+echo "================================="
+------ INSTALLATION WEBMIN ------
+================================="
+sleep 5
 curl -o webmin-setup-repo.sh https://raw.githubusercontent.com/webmin/webmin/master/webmin-setup-repo.sh
-sh webmin-setup-repo.sh
-apt install webmin --install-recommends -y
+sh webmin-setup-repo.sh --force
+apt install webmin -y --install-recommends
+rm webmin-setup-repo.sh
+rm post-install.sh
 clear
 
-echo ---------------------
-echo ------! POUR LE FUN !-------
-echo ---------------------
-apt install bsdgames -y
 
-echo ---------------------
-echo ---------------------
-echo ---------------------
-echo ------! FINI La machine va reboot !-------
-echo ---------------------
-echo ---------------------
-echo ---------------------
+echo "========================================
+------ INSTALLATION DE GAMESHELL -------
+========================================"
+sleep 5
+apt install bsdgames -y
+clear
+
+echo "====================================================================="
+------ WEBMIN accessible via : https://IP_DE_LA_MACHINE:10000 -------
+--------------- Retrouvez GAMESHELL dans : /usr/games ---------------
+====================================================================="
 sleep 10
 reboot
