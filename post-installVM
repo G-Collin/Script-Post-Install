@@ -1,6 +1,4 @@
 #!/bin/bash
-set -e
-trap 'echo "ERREUR. Quelque chose s'est mal passé à la ligne $LINENO... Le script s'est interrompu."; exit 1' ERR
 
 clear
 echo "=============================================
@@ -74,4 +72,4 @@ echo "====================================================================="
 --------------- Retrouvez GAMESHELL dans : /usr/games ---------------
 ====================================================================="
 sleep 10
-reboot
+systemctl reboot
