@@ -4,21 +4,21 @@ clear
 echo "=============================================
 ------ MISE À JOUR COMPLETE SU SYSTEME ------
 ============================================="
-sleep 5
+sleep 3
 apt update && apt upgrade -y
 clear
 
 echo "======================================
 ------ INSTALLATION DES PAQUETS ------
 ======================================"
-sleep 5
+sleep 3
 apt install ssh zip nmap locate ncdu curl git screen dnsutils net-tools sudo lynx tree -y
 clear
 
 echo "=========================================
 ------ INSTALLATION COUCHE NETBIOS ------
 ========================================="
-sleep 5
+sleep 3
 apt install winbind samba -y
 cp /etc/nsswitch.conf /etc/nsswitch_backup.conf
 echo "
@@ -51,11 +51,10 @@ clear
 echo "=================================
 ------ INSTALLATION WEBMIN ------
 ================================="
-sleep 5
+sleep 3
 curl -o webmin-setup-repo.sh https://raw.githubusercontent.com/webmin/webmin/master/webmin-setup-repo.sh
 sh webmin-setup-repo.sh --force
 apt install webmin -y --install-recommends
-rm webmin-setup-repo.sh
 rm post-install.sh
 clear
 
@@ -63,7 +62,7 @@ clear
 echo "========================================
 ------ INSTALLATION DE GAMESHELL -------
 ========================================"
-sleep 5
+sleep 3
 apt install bsdgames -y
 clear
 
