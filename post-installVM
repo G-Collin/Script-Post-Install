@@ -67,6 +67,7 @@ apt install bsdgames -y
 clear
 
 echo "=====================================================================
+---------- Post-install TERMINÉ, la machine va rédemarrée -----------
 ------ WEBMIN accessible via : https://IP_DE_LA_MACHINE:10000 -------
 --------------- Retrouvez GAMESHELL dans : /usr/games ---------------
 ====================================================================="
