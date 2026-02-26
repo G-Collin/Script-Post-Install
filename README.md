@@ -1,4 +1,4 @@
-# Script-Debian / Post-install
+# Script pour Debian et Ubuntu / Post-install
 Ceci est un script pour l'installation de paquets sur un VM Linux.
 
 ## Pré-requis
